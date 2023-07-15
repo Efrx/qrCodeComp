@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+$primary-font: 'Outfit', sans-serif;
+$primari-color: hsl(212, 45%, 89%);
+$White: hsl(0, 0%, 100%);
+$shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+$margin-unit: 1rem;
+$unit: 8px;
+// - White: hsl(0, 0%, 100%)
+// - Light gray: hsl(212, 45%, 89%)
+// - Grayish blue: hsl(220, 15%, 55%)
+// - Dark blue: hsl(218, 44%, 22%)
+
+@function size($value) {
+    @return $value * $unit ;
+}
+
+@mixin reset-pm {
+    padding: 0;
+    margin:  0;
+    box-sizing: border-box;
+}
+
+@mixin responsive($min, $value, $max) {
+    min-width: $min;
+    width: $value;
+    max-width: $max;
+}
+
+// -------------------------
+
+* {
+    @include reset-pm();
+}
+
+body {
+    background-color: $primari-color;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+}
+
+.qr-component {
+    box-shadow: $shadow;
+    background-color: $White;
+    border-radius: 1rem;
+    padding: $margin-unit;
+    @include responsive(280px, 90%, 500px);
+
+    .qr__imgContainer {
+        border-radius: 1rem;
+        overflow: hidden;
+        margin-block-end: $margin-unit*2;
+    }
+    .qr__info {
+        margin-block-end: $margin-unit*2;
+        font-family: $primary-font;
+        text-align: center;
+        h2 {
+            font-weight: 700;
+            margin-block-end: $margin-unit*2;
+        }
+        p {
+            font-size: size(2);
+            font-weight: 400;
+            color:darkgray;
+        }
+        @media screen and (min-width: 375px) {
+            h2 {
+                font-size: size(4.5);
+            }
+            p {
+                font-size: size(2.5);
+            }
+        }
+        @media screen and (min-width: 768px) {
+            h2 {
+                font-size: size(5);
+            }
+            p {
+                font-size: size(3);
+            }
+        }
+    }
+}
